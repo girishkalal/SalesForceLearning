@@ -1,7 +1,7 @@
-trigger Contact_Handler_Trigger on Contact(Before insert,After insert,After delete,After update,After undelete) {
+trigger Contact_Handler_Trigger on Contact(Before insert,After insert,After delete,After update) {
     if(trigger.isAfter){
         
-        if(trigger.isInsert || trigger.isUndelete || Trigger.isUpdate)
+        if(trigger.isInsert || Trigger.isUpdate)
         {
             Contact_Handler.countContacts(Trigger.new);
         }
