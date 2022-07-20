@@ -9,12 +9,11 @@ private class TestAllRecords {
         
         
         //creating an Contact  Object and adding an each contact by itterating for loop
-        List<contact>ConObj=new List<Contact>();
+        List<contact> conList=new List<Contact>();
         for(Integer i=1;i<12;i++){
-            ConObj.add(new Contact(LastName='asdf'+i , AccountId=objAcc.id));
+            conList.add(new Contact(LastName='asdf'+i , AccountId=objAcc.id));
         }
-        INSERT ConObj;
-        
+        INSERT conList;
         //creating an Contact List  to deleting an Particular Cantact from an account
         List<contact> deleteConatct=[select id from contact where Id=:objAcc.Id And Lastname='asdf11'];
         delete deleteConatct;
