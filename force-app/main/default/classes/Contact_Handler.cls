@@ -42,12 +42,12 @@ public class Contact_Handler {
     
     public static void countCheck(List<Contact> newlist){
         List<Account> accounts=count(newlist);
-        List<Contact> ls=new List<Contact>();
+        List<Contact> ContactList=new List<Contact>();
         for(Account acc:accounts){
             if( acc.no_of_contact__c>=3){
-                ls.addAll(acc.contacts);
+                ContactList.addAll(acc.contacts);
             }
         }
-        DELETE ls;   
+        DELETE ContactList;   
     }
 }

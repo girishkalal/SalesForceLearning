@@ -6,7 +6,7 @@ trigger Contact_Handler_Trigger on Contact(Before insert,After insert,After dele
             Contact_Handler.countContacts(Trigger.new);
         }
         
-        if(trigger.isDelete || Trigger.isUpdate)
+        else if(trigger.isDelete || Trigger.isUpdate)
         {
             Contact_Handler.countDelete(Trigger.old);
         }   

@@ -50,7 +50,7 @@ public class ContactHandlerTest {
         objCon8.LastName='sdfghjk';
         objCon8.AccountId=objAcc.Id;
         INSERT objCon8;
-        
+         
         Contact objCon10=new Contact();
         objCon10.LastName='sdfghjk';
         objCon10.AccountId=objAcc.Id;
@@ -72,7 +72,8 @@ public class ContactHandlerTest {
         
         
         //creating contact List to count the remaining contact 
+        List<Account> forAssertionCheck=[select id,no_of_contact__c from Account where Account.id=:objAcc.Id];
         List<contact> contacts=[SELECT id FROM contact WHERE AccountId=:objAcc.Id];
-        System.assertEquals(1,contacts.size());
+        System.assertEquals(1,forAssertionCheck.no_of_contact__c);
     }
 }
