@@ -1,5 +1,5 @@
 public class Contact_Handler {
-    public static List<Account> Count(List<Contact>newlist)
+    public static List<Account>Count(List<Contact> newlist)
     {
         //set is created for store the uniqe value from newlist
         Set<Id> setId=new Set<Id>();
@@ -42,12 +42,12 @@ public class Contact_Handler {
     
     public static void countCheck(List<Contact> newlist){
         List<Account> accounts=count(newlist);
-        List<Contact> ContactList=new List<Contact>();
+        List<Contact> ls=new List<Contact>();
         for(Account acc:accounts){
             if( acc.no_of_contact__c>=3){
-                ContactList.addAll(acc.contacts);
+                ls.addAll(acc.contacts);
             }
         }
-        DELETE ContactList;   
+        DELETE ls;   
     }
 }

@@ -14,6 +14,7 @@ private class TestAllRecords {
             conList.add(new Contact(LastName='asdf'+i , AccountId=objAcc.id));
         }
         INSERT conList;
+       // List<contact> Remaingcontacts=[select id from contact where Id=:objAcc.Id];
         //creating an Contact List  to deleting an Particular Cantact from an account
         List<contact> deleteConatct=[select id from contact where Id=:objAcc.Id And Lastname='asdf11'];
         delete deleteConatct;

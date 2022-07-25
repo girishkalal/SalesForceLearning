@@ -7,7 +7,7 @@ global class AccountBatch implements Database.Batchable<sObject>{
      }
      global void execute(Database.BatchableContext bw,List<Account> lList){
         for(Account l:lList){
-            if(l.Website==null){
+            if(l.Website== null){
                 l.Website='https://www.salesforce.com/in/?ir=1';
             }
         }
