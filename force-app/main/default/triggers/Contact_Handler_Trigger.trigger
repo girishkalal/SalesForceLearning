@@ -1,15 +1,22 @@
-trigger Contact_Handler_Trigger on Contact(After insert,After delete,After update,After undelete) {
+trigger Contact_Handler_Trigger on Contact(Before insert,After insert,After delete,After update) {
     if(trigger.isAfter){
-        if(trigger.isInsert || trigger.isUpdate|| trigger.isUndelete)
+        
+        if(trigger.isInsert || Trigger.isUpdate)
         {
             Contact_Handler.countContacts(Trigger.new);
         }
-        if(trigger.isDelete)
+        
+        else if(trigger.isDelete || Trigger.isUpdate)
         {
-           // System.debug('old map '+Trigger.oldmap);
-            ContactHandlerDelete.countDelete(Trigger.old);
+            Contact_Handler.countDelete(Trigger.old);
         }   
         
+    }
+    
+    if(trigger.isBefore){
+        if(trigger.isInsert){
+            Contact_Handler.countCheck(Trigger.new);
+        }
     }
     
 }

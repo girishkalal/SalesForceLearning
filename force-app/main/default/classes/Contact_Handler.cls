@@ -1,29 +1,53 @@
 public class Contact_Handler {
-    
-    public static void countContacts(List<Contact> newlist){
-        Set<id> setId=new Set<id>();
-        if(newlist!=null){
+    public static List<Account>Count(List<Contact> newlist)
+    {
+        //set is created for store the uniqe value from newlist
+        Set<Id> setId=new Set<Id>();
+        if(!newlist.isEmpty()){
             for(Contact c:newlist)
             {
-                setId.add(c.accountId);
+                setId.add(c.AccountId);
             }
         }
-        list<Account>accounts=[select Id ,no_of_contact__c,(select Id from Contacts)from Account where Id in :setId];
-        list<Contact> ls=new List<Contact>();
+        List<Account>accounts=[SELECT Id ,no_of_contact__c,(SELECT Id FROM Contacts)FROM Account WHERE Id in :setId]; 
+        RETURN accounts;
+    }
+    
+    //inserting the record and updating the record
+    public static void countContacts(List<Contact> newlist){
+        List<Account> accounts=count(newlist);
+        List<Contact> ls=new List<Contact>();
         for(Account acc:accounts){
             acc.no_of_contact__c=acc.Contacts.size();
             ls.addAll(acc.contacts);
-            if(acc.Contacts.size()>5){
-                acc.no_of_contact__c=0;
-            }
             
         }
-        if(ls.size()>5){
-            delete ls;
+        UPDATE accounts;
+    }
+    
+    //deleting the record
+    
+    public static void countDelete(List<Contact> newlist)
+    { 
+        List<Account> accounts=count(newlist);
+        List<Account> UpdateAccountList=new List<Account>();
+        for(Account obj:accounts){
+            obj.no_of_contact__c=obj.Contacts.size();
+            UpdateAccountList.add(obj);
         }
-        
-        update accounts;
-        
-        
+        UPDATE UpdateAccountList;  
+    }
+    
+    //before insert we checking the record
+    
+    public static void countCheck(List<Contact> newlist){
+        List<Account> accounts=count(newlist);
+        List<Contact> ls=new List<Contact>();
+        for(Account acc:accounts){
+            if( acc.no_of_contact__c>=3){
+                ls.addAll(acc.contacts);
+            }
+        }
+        DELETE ls;   
     }
 }
